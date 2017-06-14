@@ -1,0 +1,20 @@
+<div style="relative">
+    <div style="position:relative; overflow:none; width:100%; display:none;" id='dataContainer'>
+        {{~it.points :point}}
+            <span id="{{=point.id}}" style="position:absolute" class="datapoint">*</span>
+        {{~}}
+        &nbsp;
+    </div>
+    <div
+        style="text-aligne:center; border-left:dotted red 1px;
+         min-width:10%; padding-top:3em; margin:auto; position:absolute;
+         left:40%; top:-1em">
+        <button id="sample">Sample</button>
+        <button id="clear">Clear</button>
+        <button id="download">Download</button>
+        <div id="sampleView" style="position:relative">
+    </div>
+</div>
+
+
+</div>

@@ -1,0 +1,51 @@
+{
+  "name": "ar-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "watch": {
+    "start": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,html,css"
+    }
+  },
+  "scripts": {
+    "prestart": "npm run build",
+    "start": "nodemon src/server/spyServer.js & nodemon src/bomb/bombServer.js",
+    "build": "webpack",
+    "watch": "npm-watch"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "api-ai-javascript": "^2.0.0-beta.20",
+    "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.0.1",
+    "dot": "^1.1.2",
+    "npm-watch": "^0.1.9",
+    "raw-loader": "^0.5.1",
+    "webpack": "^3.0.0-rc.1"
+  },
+  "dependencies": {
+    "aframe": "^0.5.0",
+    "exports-loader": "^0.6.4",
+    "express": "^4.15.3",
+    "imports-loader": "^0.7.1",
+    "nodemon": "^1.11.0",
+    "query-string": "^4.3.4",
+    "script-loader": "^0.7.0",
+    "shuffle-array": "^1.0.1",
+    "simple-static-server": "0.0.1",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3"
+  }
+}

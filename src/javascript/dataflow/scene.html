@@ -1,0 +1,35 @@
+<a-scene embedded  artoolkit='sourceType: webcam; detectionMode: mono;'>
+    <assets>
+        <img src="/bug.png" id="bugImg"/>
+    </assets>
+    <a-marker preset='hiro'>
+        {{~it :stream}}
+            <a-entity id="{{=stream.id}}" position="-30 0 {{=stream.z}}">
+                {{~stream.xVals :x}}
+                    <a-sphere color="{{=stream.color}}"
+                        material='opacity: 0.4;'
+                        radius="0.1"
+                        position="{{=x}} 0 0">
+                    </a-sphere>
+                {{~}}
+
+                <a-animation attribute="position"
+                   easing="linear"
+                   dur="{{=stream.aniDuration}}"
+                   fill="forwards"
+                   to="50 0 {{=stream.z}}"
+                   repeat="indefinite">
+               </a-animation>
+            </a-entity>
+        {{~}}
+
+        <a-image rotation="90 90 90" src="#bugImg" position="0.5 0 0"></a-image>
+    </a-marker>
+
+    <a-entity camera>
+
+        <a-plane color="black" material='opacity: 0.6;'  height="2000" width="2000" position="0 0 -100" ></a-plane>
+
+    </a-entity>
+
+</a-scene>
