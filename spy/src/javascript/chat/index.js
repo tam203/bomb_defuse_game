@@ -10,7 +10,21 @@ function chat(msg){
     return client.textRequest(msg)
         .then(response => response.result.fulfillment.speech)
         .then(toolsToLinks)
+        .then(processStats)
 }
+
+function processStats(msg) {
+    if(msg.find('%')){
+        return getTeamState().then(state => {
+            var time_left = ((new Date()).getTime() - state[startAt])/1000;
+            return msg.repace('%time_min', time_left);
+        })
+    } else {
+        return msg;
+    }
+}
+getTeamState
+
 
 function toolsToLinks(msg) {
     var tools = ['dataFlow', 'chat', 'dataFilter'];

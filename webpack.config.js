@@ -4,9 +4,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/javascript/index.js',
+  entry: {
+    "spy/static/spy" : './spy/src/javascript/index.js'
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'source-map',
@@ -20,6 +22,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
-    new CopyWebpackPlugin([{from : 'src/static'}])
+    new CopyWebpackPlugin([{from : 'spy/src/static', "to":"spy/static"}]),
+    new CopyWebpackPlugin([{from : 'bomb/src/static', "to":"bomb/static"}])
   ]
 };

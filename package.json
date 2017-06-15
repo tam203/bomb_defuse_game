@@ -13,7 +13,9 @@
   },
   "scripts": {
     "prestart": "npm run build",
-    "start": "nodemon src/server/spyServer.js & nodemon src/bomb/bombServer.js",
+    "spyStart" : "nodemon spy/src/server/spyServer.js",
+    "start": "npm run spyStart & npm run bombStart",
+    "bombStart":"nodemon bomb/src/server/server.js",
     "build": "webpack",
     "watch": "npm-watch"
   },
@@ -40,6 +42,7 @@
     "exports-loader": "^0.6.4",
     "express": "^4.15.3",
     "imports-loader": "^0.7.1",
+    "node-json-db": "^0.7.3",
     "nodemon": "^1.11.0",
     "query-string": "^4.3.4",
     "script-loader": "^0.7.0",

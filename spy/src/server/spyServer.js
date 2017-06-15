@@ -1,13 +1,28 @@
 // app.js
 const path = require('path');
+const request = require('request');
 
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-var staticDir = path.resolve(path.join(__dirname, '/../../dist/'));
+var staticDir = path.resolve(path.join(__dirname, '/../../../dist/spy/static'));
 console.log('Serving static from', staticDir);
 app.use(express.static(staticDir));
+
+app.use('/start', function(req, res, next) {
+    console.log(req.query);
+    var teamCode = req.query.teamCode.replace('/','__').replace('\\','--');
+    request('http://localhost:3300/teamProgress/' + teamCode, function (error, response, body) {
+        if(error){
+            console.log("Error starting team", error);
+            res.status(500).send('Something broke!');
+        } else {
+             res.redirect('/?teamCode'+teamCode+'&tool=chat');
+        }
+
+    });
+})
 
 
 io.on('connection', function(client) {

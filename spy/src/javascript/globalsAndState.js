@@ -1,7 +1,24 @@
 const queryString = require('query-string');
+const BOMB_SERVER_ADDRESS = "http://localhost:3300";
 
 var teamCode = null;
 
+
+var teamState = null;
+
+
+
+function getTeamState(successCb, errorCb){
+    return new Promise(function(resolve, reject){
+        request('http://localhost:3300/teamProgress/' + getCode(), function (error, response, body) {
+            if(error){
+                reject(error);
+            } else {
+                return body;
+            }
+        });
+    });
+}
 
 function getCode(){
     if(teamCode){
@@ -33,4 +50,4 @@ function renderView(html){
     container.innerHTML = html;
 }
 
-export {getCode, makeToolUrl, renderView};
+export {getCode, makeToolUrl, renderView, getTeamState};
