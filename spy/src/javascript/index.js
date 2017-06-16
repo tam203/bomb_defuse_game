@@ -3,12 +3,12 @@ import dataFilterApp from './datafilter';
 const queryString = require('query-string');
 import {chatView} from './chat';
 import {welcomeView} from './welcome';
-import {BOMB_SERVER_ADDRESS, isDead} from './globalsAndState';
+import {isDead} from './globalsAndState';
 
 function endIfDead(){
     isDead().then(dead=>{
         if(dead){
-            location = BOMB_SERVER_ADDRESS + "/bang?msg="+dead;
+            location = "/stats/bang?msg="+dead;
         }
     });
 }

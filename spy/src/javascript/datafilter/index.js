@@ -5,7 +5,7 @@ import {LOCATIONS, notifyInArea} from '../location'
 import {listen, MSG_TYPE} from '../connect';
 import '../connect';
 import {renderView} from '../globalsAndState';
-const doT = require('doT');
+const doT = require('dot');
 
 
 // Local globals

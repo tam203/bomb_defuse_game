@@ -1,5 +1,4 @@
 const queryString = require('query-string');
-const BOMB_SERVER_ADDRESS = "http://localhost:3300";
 
 
 var teamCode = null;

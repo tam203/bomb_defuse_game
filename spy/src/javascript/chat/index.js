@@ -1,7 +1,7 @@
 import {ApiAiClient, ApiAiStreamClient} from "api-ai-javascript";
 import {makeToolUrl, renderView, getTeamState} from '../globalsAndState';
 import scene from './scene.html';
-const doT = require('doT');
+const doT = require('dot');
 
 const client = new ApiAiClient({accessToken: '174322047e1249e2af06fe66955a9330', streamClientClass: ApiAiStreamClient});
 
@@ -16,7 +16,7 @@ function chat(msg){
 function processStats(msg) {
     if(msg.search('%') >= 0){
         return getTeamState().then(state => {
-            return msg.replace('%time_min', (state.timeLeft / 60).toFixed(2));
+            return msg.replace(/%time_min/g, (state.timeLeft / 60).toFixed(2));
         });
     } else {
         return msg;
@@ -27,7 +27,7 @@ function toolsToLinks(msg) {
     var tools = ['dataFlow', 'chat', 'dataFilter'];
     for (var i = 0; i < tools.length; i++) {
         var tool = tools[i];
-        msg = msg.replace('#'+tool, link(tool));
+        msg = msg.replace(new RegExp('#'+tool, 'g'), link(tool));
     }
     return msg;
 }

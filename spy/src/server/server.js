@@ -11,7 +11,8 @@ var proxy = require('express-http-proxy');
 
 
 
-var bomb_url = (process.env.bomb_url)? process.env.bomb_url : 'http://localhost:3300/';
+var bomb_url = (process.env.BOMB_URL)? process.env.BOMB_URL : 'http://localhost:3300/';
+console.log(bomb_url);
 app.use('/stats/', proxy(bomb_url));
 
 
@@ -23,7 +24,7 @@ app.use(express.static(staticDir));
 app.use('/start', function(req, res, next) {
     console.log(req.query);
     var teamCode = req.query.teamCode.replace('/','__').replace('\\','--');
-    request('http://localhost:3300/teamProgress/' + teamCode, function (error, response, body) {
+    request( bomb_url + '/teamProgress/' + teamCode, function (error, response, body) {
         if(error){
             console.log("Error starting team", error);
             res.status(500).send('Something broke!');

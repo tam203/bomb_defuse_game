@@ -27,16 +27,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "api-ai-javascript": "^2.0.0-beta.20",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
     "dot": "^1.1.2",
     "npm-watch": "^0.1.9",
     "raw-loader": "^0.5.1",
-    "webpack": "^3.0.0-rc.1"
-  },
-  "dependencies": {
+    "webpack": "^3.0.0-rc.1",
     "aframe": "^0.5.0",
     "body-parser": "^1.17.2",
     "exports-loader": "^0.6.4",
