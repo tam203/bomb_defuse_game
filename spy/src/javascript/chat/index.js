@@ -1,5 +1,5 @@
 import {ApiAiClient, ApiAiStreamClient} from "api-ai-javascript";
-import {makeToolUrl, renderView} from '../globalsAndState';
+import {makeToolUrl, renderView, getTeamState} from '../globalsAndState';
 import scene from './scene.html';
 const doT = require('doT');
 
@@ -14,17 +14,14 @@ function chat(msg){
 }
 
 function processStats(msg) {
-    if(msg.find('%')){
+    if(msg.search('%') >= 0){
         return getTeamState().then(state => {
-            var time_left = ((new Date()).getTime() - state[startAt])/1000;
-            return msg.repace('%time_min', time_left);
-        })
+            return msg.replace('%time_min', (state.timeLeft / 60).toFixed(2));
+        });
     } else {
         return msg;
     }
 }
-getTeamState
-
 
 function toolsToLinks(msg) {
     var tools = ['dataFlow', 'chat', 'dataFilter'];

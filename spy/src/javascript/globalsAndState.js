@@ -1,22 +1,35 @@
 const queryString = require('query-string');
 const BOMB_SERVER_ADDRESS = "http://localhost:3300";
 
+
 var teamCode = null;
-
-
 var teamState = null;
-
+const solveTimeInMin = 60;
 
 
 function getTeamState(successCb, errorCb){
-    return new Promise(function(resolve, reject){
-        request('http://localhost:3300/teamProgress/' + getCode(), function (error, response, body) {
-            if(error){
-                reject(error);
-            } else {
-                return body;
-            }
-        });
+    if(teamState){
+        return Promise.resolve(teamState);
+    }
+    return fetch('/stats/teamProgress/' + getCode())
+        .then(res => res.json())
+        .then(state => {
+            state.timeLeft = solveTimeInMin*60 - ((new Date()).getTime() - state.startAt)/1000;
+            teamState = state;
+            return state;
+        }
+    );
+}
+
+function isDead(){
+    return getTeamState().then(state => {
+        if(state.state !== "playing") {
+            return "Already finished game with result " + state.state + ", " + state.stateReason;
+        }
+        if(state.timeLeft < 0) {
+            return "Out of time - bang!";
+        }
+        return "";
     });
 }
 
@@ -50,4 +63,4 @@ function renderView(html){
     container.innerHTML = html;
 }
 
-export {getCode, makeToolUrl, renderView, getTeamState};
+export {isDead, getCode, makeToolUrl, renderView, getTeamState};

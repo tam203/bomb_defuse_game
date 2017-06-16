@@ -1,0 +1,24 @@
+---
+layout: layout.dot
+title: Tick tick...
+---
+[[##body:
+<form action="/defuse" method="post" >
+    <input name="code0" type="number" min="0" max="9" />
+    <input name="code1" type="number" min="0" max="9" />
+    <input name="code2" type="number" min="0" max="9" />
+    <input name="code3" type="number" min="0" max="9" />
+    <input name="code4" type="number" min="0" max="9" />
+    <input name="code5" type="number" min="0" max="9" />
+    [[? model.teamCode ]]
+        <input name="teamCode" type="hidden" value="[[=model.teamCode]]"/>
+    [[??]]
+        <input id="teamCode" name="teamCode" type="hidden" value=""/>
+        <script>
+            var teamCode=prompt("please enter your team code to continue.");
+            document.getElementById('teamCode').value = teamCode.trim();
+        </script>
+    [[?]]
+    <input type="submit" value="de-activate" />
+</form>
+#]]

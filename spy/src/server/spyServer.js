@@ -1,4 +1,3 @@
-// app.js
 const path = require('path');
 const request = require('request');
 
@@ -7,6 +6,16 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var staticDir = path.resolve(path.join(__dirname, '/../../../dist/spy/static'));
+
+var proxy = require('express-http-proxy');
+
+
+// TODO: get path from env var.
+app.use('/stats/', proxy('http://localhost:3300/'));
+
+
+
+
 console.log('Serving static from', staticDir);
 app.use(express.static(staticDir));
 
@@ -18,7 +27,7 @@ app.use('/start', function(req, res, next) {
             console.log("Error starting team", error);
             res.status(500).send('Something broke!');
         } else {
-             res.redirect('/?teamCode'+teamCode+'&tool=chat');
+             res.redirect('/?teamCode='+teamCode+'&tool=chat');
         }
 
     });

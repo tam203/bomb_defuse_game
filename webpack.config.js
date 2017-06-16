@@ -22,7 +22,6 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
-    new CopyWebpackPlugin([{from : 'spy/src/static', "to":"spy/static"}]),
-    new CopyWebpackPlugin([{from : 'bomb/src/static', "to":"bomb/static"}])
+    new CopyWebpackPlugin([{from : 'spy/src/static', "to":"spy/static"}])
   ]
 };

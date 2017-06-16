@@ -1,0 +1,11 @@
+---
+layout: layout.dot
+title: BANG!
+---
+[[##body:
+<h1>Kablamo!</h1>
+<p>Better luck next time!!!</p>
+[[?model.msg]]
+    <p>Reason: [[=model.msg]]</p>
+[[?]]
+#]]
