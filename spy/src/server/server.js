@@ -5,13 +5,14 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-var staticDir = path.resolve(path.join(__dirname, '/../../../dist/spy/static'));
+var staticDir = path.resolve(path.join(__dirname, '/../../dist/static'));
 
 var proxy = require('express-http-proxy');
 
 
-// TODO: get path from env var.
-app.use('/stats/', proxy('http://localhost:3300/'));
+
+var bomb_url = (process.env.bomb_url)? process.env.bomb_url : 'http://localhost:3300/';
+app.use('/stats/', proxy(bomb_url));
 
 
 

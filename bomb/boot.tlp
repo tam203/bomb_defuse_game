@@ -1,0 +1,15 @@
+#cloud-config
+runcmd:
+    # Install git
+    - 'yum update -y'
+    - 'yum install -y git docker'
+
+    # Start Docker
+    - 'service docker start'
+
+    # Get, build and run container
+    - 'mkdir -p /root/game'
+    - 'git clone https://github.com/tam203/bomb_defuse_game.git /root/game'
+    - 'cd /root/game/bomb'
+    - 'docker build -t bomb .'
+    - 'docker run -d --restart always -p 80:3300  bomb'

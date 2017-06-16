@@ -1,0 +1,31 @@
+{
+  "name": "game-bomb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server/index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "startWithWatch": "nodemon src/server.js"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dot": "^1.1.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-dot-engine": "^1.0.7",
+    "express-http-proxy": "^1.0.3",
+    "node-json-db": "^0.7.3",
+    "nodemon": "^1.11.0",
+    "query-string": "^4.3.4"
+  }
+}

@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    "spy/static/spy" : './spy/src/javascript/index.js'
+    "static/spy" : './src/javascript/index.js'
   },
   output: {
     filename: '[name].js',
@@ -22,6 +22,6 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
-    new CopyWebpackPlugin([{from : 'spy/src/static', "to":"spy/static"}])
+    new CopyWebpackPlugin([{from : 'src/static', "to":"static"}])
   ]
 };
