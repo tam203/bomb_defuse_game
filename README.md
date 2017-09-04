@@ -1,7 +1,18 @@
 ```
-npm install
-npm run watch
+
+cd bomb
+npm install 
+npm run startWithWatch &   
 ```
+
+In annother terminal
+```
+cd spy
+npm install
+npm run watch &
+```
+
+Open browser to `localhost:3000`
 
 To allow camera access access via `localhost` not `0.0.0.0`.
 ## Useful links

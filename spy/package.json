@@ -12,6 +12,7 @@
     }
   },
   "scripts": {
+    "prestartWithRestart": "npm run build",
     "prestart": "npm run build",
     "startWithRestart": "nodemon src/server/server.js",
     "start": "node src/server/server.js",
